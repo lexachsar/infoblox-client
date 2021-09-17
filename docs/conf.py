@@ -273,3 +273,28 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+
+def run_apidoc(_):
+    """
+    Runs sphinx-apidoc to generate reference documentation from docstrings
+    """
+    from sphinx.ext.apidoc import main
+    import os
+    import sys
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+    cur_dir = os.path.abspath(os.path.dirname(__file__))
+    module = os.path.join(cur_dir, "..", "infoblox_client")
+    main(['-o', cur_dir, module, '--force'])
+
+
+def setup(app):
+    """
+    This function is called by sphinx at initialization time according to:
+    https://www.sphinx-doc.org/en/master/extdev/appapi.html
+
+    This is a workaround solution to generate sphinx-apidoc automatically
+    on the ReadTheDocs side. For more information see:
+    https://github.com/readthedocs/readthedocs.org/issues/1139
+    """
+    app.connect('builder-inited', run_apidoc)
