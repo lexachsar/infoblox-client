@@ -81,7 +81,7 @@ def safe_json_load(data):
         LOG.warning("Could not decode reply into json: %s", data)
 
 
-def try_value_to_bool(value: str, strict_mode=True):
+def try_value_to_bool(value, strict_mode=True):
     """Tries to convert value into boolean.
 
     :param value: Value that should be converted into boolean.
