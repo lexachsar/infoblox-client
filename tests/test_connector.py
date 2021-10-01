@@ -344,7 +344,7 @@ class TestInfobloxConnector(unittest.TestCase):
         query_params = {'some_array_option': ['some_value1', 'some_value2']}
         url = self.connector._construct_url('network',
                                             query_params=query_params)
-        self.assertEqual('https://infoblox.example.org/wapi/v1.1/network?some_option=some_value',
+        self.assertEqual('https://infoblox.example.org/wapi/v1.1/network?some_array_option=some_value1,some_value2',  # noqa: E501
                          url)
 
     def test_construct_url_with_force_proxy(self):
